@@ -5,7 +5,8 @@ The application assumes cassandra cluster available with below keyspace and tabl
 
 ```CREATE KEYSPACE targetcasestudy WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '3'}  AND durable_writes = true;```
 
-```CREATE TABLE targetcasestudy.product (
+```
+CREATE TABLE targetcasestudy.product (
     id bigint PRIMARY KEY,
     currency text,
     last_updated timestamp,
