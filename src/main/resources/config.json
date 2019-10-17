@@ -1,0 +1,7 @@
+{
+  "cassandra.host" : "127.0.0.1",
+  "cassandra.port" : 9042,
+  "cassandra.keyspace": "targetcasestudy",
+  "http.port": 8443,
+  "verticle.instances": 2
+}
