@@ -3,7 +3,11 @@
 Cassandra host and port can be configured in the resource file config.json.
 The application assumes cassandra cluster available with below keyspace and table
 
-```CREATE KEYSPACE targetcasestudy WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '3'}  AND durable_writes = true;```
+```
+   CREATE KEYSPACE targetcasestudy WITH 
+   replication = {'class': 'SimpleStrategy', 'replication_factor': '3'}  
+   AND durable_writes = true;
+```
 
 ```
 CREATE TABLE targetcasestudy.product (
