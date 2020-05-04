@@ -5,8 +5,10 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.unit.Async;
 import io.vertx.ext.unit.TestContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
+import io.vertx.ext.web.client.WebClient;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,22 +30,21 @@ public class MyRetailApplicationTest {
   }
 
   @Test
-  public void testMyApplication(TestContext context) {
+  public void testMyApplication(TestContext context) throws InterruptedException {
     final Async async = context.async();
 
-    vertx
-        .createHttpClient()
-        .getNow(
-            8443,
-            "localhost",
-            "/api/products/13860428",
-            response ->
-                response.handler(
-                    body -> {
-                      JsonObject jsonObject = body.toJsonObject();
-                      context.assertTrue(
-                          jsonObject.getString("name").equals("The Big Lebowski (Blu-ray)"));
-                      async.complete();
-                    }));
+    WebClient.create(vertx)
+        .get(8443, "localhost", "/health")
+        .send(
+            response -> {
+              context.assertTrue(
+                  response
+                      .result()
+                      .body()
+                      .toString()
+                      .equals("myRetailApplication is up and running"));
+              async.complete();
+            });
+    Thread.sleep(25000);
   }
 }

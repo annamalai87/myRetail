@@ -1,0 +1,18 @@
+version '1'
+
+metadata:
+  template: false
+
+services:
+  - name: cassandra
+    image: cassandra:latest
+    pull: true
+    ports:
+      -"9042:9042"
+      -"9160:9160"
+steps:
+  - name: build
+    image: zenika/alpine-maven:latest
+    pull: true
+    commands:
+      - mvn package
